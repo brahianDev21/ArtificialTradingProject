@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% block title %}Login{% endblock%}
+{% block content%}
+<div class="wrapper">
+
+  <div class="effectWrapper">
+
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %} 
+      {{ form.non_field_errors }}
+
+      <h1>Login</h1>
+      <div class="mb-3 input-box">
+        <label for="username1" class="form-label">Username</label>
+        {{ form.username }}
+        <box-icon name='user'></box-icon>
+      </div>
+      <div class="mb-3 input-box">
+        <label for="password1" class="form-label">Password</label>
+        {{ form.password }}
+        <box-icon name='lock-open' ></box-icon>
+      </div>
+      <button type="submit" class="btn btn-primary submitbtn">Submit</button><br>
+      <div class="backdiv">
+        <a href="{% url 'index' %}" role="button" class="text-decoration-none" style="color: black">Regresar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

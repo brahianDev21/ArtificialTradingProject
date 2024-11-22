@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}New journal{% endblock %}
+{% block content %} 
+
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Journals</h1>
+    <a href="{% url 'index' %}" class="btn btn-primary">Volver</a>
+  </div>
+
+  {% if journals %}
+    <ul class="list-group">
+      {% for journal in journals %}
+      <li class="list-group-item">
+        <a href="{% url 'journal_detail' journal_id=journal.id %}">{{ journal.title }}</a>
+        <div>
+          <!-- Botón para editar -->
+          <a href="{% url 'edit_journal' journal_id=journal.id %}" class="btn btn-primary btn-sm">Editar</a>
+  
+          <!-- Botón para eliminar -->
+          <form action="{% url 'delete_journal' journal_id=journal.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta entrada?');">Eliminar</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <div class="alert alert-info text-center" role="alert">
+    No tienes entradas aun. ¡Crea una nueva entrada!
+    </div>
+  {% endif%}
+
+</div>
+{% endblock %}

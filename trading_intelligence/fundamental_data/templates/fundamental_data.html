@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %} 
+<script src="{% static 'js/fundamental.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'css/fundamental.css' %}">
+{% endblock %}
+{% block title %}Fundamental Data{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+
+  <div class="row mt-5">
+
+    <div class="col-sm-6">
+      <h2>Grafica diaria EURUSD</h2>
+      <!-- Contenedor para el gráfico -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div id="chart"></div>
+        </div>
+      </div>
+    </div>
+    <!--Tabla de eventos economicos-->
+    <div class="col-sm-6 tableEvents">
+
+      <h2 class="fs-15 text-center">Eventos economicos: {{ min_date }} - {{ max_date }}</h2>
+    
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Currency</th>
+            <th scope="col">Impact</th>
+            <th scope="col">Event</th>
+            <th scope="col">Forecast</th>
+            <th scope="col">Previous</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for event in events %}
+          <tr>
+            <th scope="row">{{ event.formatted_date }}</th>
+            <td>{{ event.formatted_time }}</td>
+            <td>{{event.country}}</td>
+            <td>{{event.impact}}</td>
+            <td>{{event.title}}</td>
+            <td>{{event.forecast}}</td>
+            <td>{{event.previous}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!--Noticias del mercado-->
+  <div class="row mt-4">
+    <div class="col-12">
+      <h2>Market News</h2>
+      <div class="row">
+        {% for news in news_data %}
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ news.title }}</h5>
+              <p class="card-text">{{ news.summary }}</p>
+              <p class="text-muted">
+                Source: {{ news.source }} | 
+                Time: {{ news.time_published }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+  // Pass raw JSON data to a global variable
+  const rawData = JSON.parse('{{ historical_prices|safe }}');
+  console.log('Raw data loaded:', rawData);
+</script>
+{% endblock %}

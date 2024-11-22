@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}New journal{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <form method="POST" action="{% url 'create_journal' %}" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {% load crispy_forms_tags %}
+        <div class="row mt-3">
+            <div class="mb-3 col-sm-4 text_labels">
+                <label for="title">Titulo</label>
+                {{ form.title|as_crispy_field }}  
+            </div>
+            <div class="mb-3 col-sm-4 text_labels">
+                <label for="image">Imagen del Trade</label>
+                {{ form.img_filename|as_crispy_field }}  
+            </div>
+            <div class="mb-3 col-sm-4">
+                <label for="is_profit">¿Fue profit?</label>
+                {{ form.is_profit|as_crispy_field }}  
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating">
+                <label for="content">Contenido</label>
+                {{ form.content|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="pair">Par de divisas</label>
+                {{ form.pair|as_crispy_field }}
+            </div>
+            <div class="col-sm-4">
+                <label for="order_type">Tipo de orden</label>
+                {{ form.order_type|as_crispy_field }}
+            </div>
+            <div class="mb-3 col-sm-4 text_labels">
+                <label for="lots">Lotaje</label>
+                {{ form.lots|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="open_datetime">Open datetime:</label>
+                {{ form.open_datetime|as_crispy_field }}
+            </div>
+            <div class="col-sm-6">
+                <label for="close_datetime">Close datetime:</label>
+                {{ form.close_datetime|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="open_price">Precio de apertura</label>
+                {{ form.open_price|as_crispy_field }}
+            </div>
+            <div class="col-sm-6">
+                <label for="close_price">Precio de cierre</label>
+                {{ form.close_price|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="take_profit">Take profit</label>
+                {{ form.take_profit|as_crispy_field }}
+            </div>
+            <div class="col-sm-4">
+                <label for="stop_loss">Stop Loss</label>
+                {{ form.stop_loss|as_crispy_field }}
+            </div>
+            <div class="col-sm-4">
+                <label for="commission">Comision</label>
+                {{ form.commission|as_crispy_field }}
+            </div>
+        </div>
+        <div class="container">
+            <p class="d-flex justify-content-center">Para todos los valores que requieran decimales usar "."</p>
+            <p class="d-flex justify-content-center">Además, el datetime debe ser seleccionado en hora de New York. UTC -4</p>
+            <p class="d-flex justify-content-center">Ejemplo de ingleso datos de Open Datetime / Close Datetime:2023-07-05T14:30</p>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary d-flex justify-content-center mb-3">Subir</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% for field, errors in form.errors.items %}
+    <div class="alert alert-danger">
+        <strong>{{ field }}:</strong> {{ errors|first }}
+    </div>
+{% endfor %}
+{% endblock %}

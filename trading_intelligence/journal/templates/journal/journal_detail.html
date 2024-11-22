@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Entrada Journal{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-4">
+    <h1 class="text-center">{{ journal.title }}</h1>
+    <div class="card">
+        {% if journal.img_filename %}
+            <img src="{{ journal.img_filename.url }}" class="card-img-top justify-items-center imagenJournal" alt="Imagen de {{ journal.title }}">
+        {% endif %}
+        <div class="card-body">
+            <p class="card-text"><strong>Contenido:</strong> {{ journal.content }}</p>
+            <p class="card-text"><strong>Par:</strong> {{ journal.pair }}</p>
+            <p class="card-text"><strong>Tipo de orden:</strong> {{ journal.order_type }}</p>
+            <p class="card-text"><strong>Lotes:</strong> {{ journal.lots }}</p>
+            <p class="card-text"><strong>Precio de apertura:</strong> {{ journal.open_price }}</p>
+            <p class="card-text"><strong>Precio de cierre:</strong> {{ journal.close_price }}</p>
+            <p class="card-text"><strong>Fecha de apertura:</strong> {{ journal.open_datetime|date:"Y-m-d H:i:s" }}</p>
+            <p class="card-text"><strong>Fecha de cierre:</strong> {{ journal.close_datetime|date:"Y-m-d H:i:s"  }}</p>
+            <p class="card-text"><strong>Take Profit:</strong> {{ journal.take_profit }}</p>
+            <p class="card-text"><strong>Stop Loss:</strong> {{ journal.stop_loss }}</p>
+            <p class="card-text"><strong>Comisión:</strong> {{ journal.commission }}</p>
+        </div>
+    </div>
+    <div class="mt-3">
+        <a href="{% url 'journal_entries' %}" class="btn btn-primary">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}

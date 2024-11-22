@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/indexstyles.css' %}">
+  <script src="{% static 'javascript/global.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="{% url 'create_journal' %}">Crear un Journal</a>
+    <a href="{% url 'journal_entries' %}">Ver mis Journals</a>
+    <a href="{% url 'fundamental_data' %}">Fundamentales</a>
+  </div>
+  
+  <div class="row mt-3 border-bottom">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+  </div>
+  <div>
+    <h1 class="text-center mt-5">Economic Data Calendar</h1>
+  </div>
+
+</div>
+
+
+{% endblock %}
