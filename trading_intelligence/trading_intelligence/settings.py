@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'journal',
     'crispy_forms',
     'crispy_bootstrap5',
-    'fundamental_data'
+    'fundamental_data',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
