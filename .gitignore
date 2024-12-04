@@ -14,8 +14,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-media/
-static/
 
 # IDE
 .vscode/
@@ -30,6 +28,3 @@ static/
 # OS
 .DS_Store
 Thumbs.db
-
-# Project specific
-trading_intelligence/files/journal_imgs/
