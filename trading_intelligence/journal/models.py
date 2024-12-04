@@ -18,6 +18,7 @@ class Journal(models.Model):
     take_profit = models.FloatField(null=True, blank=True)
     stop_loss = models.FloatField()
     commission = models.FloatField()
+    operation_balance = models.FloatField(default=0)
 
     def __str__(self):
         return self.title

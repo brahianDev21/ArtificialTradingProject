@@ -8,18 +8,113 @@
 {% block content %}
 
 <div class="container-fluid">
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="{% url 'create_journal' %}">Crear un Journal</a>
-    <a href="{% url 'journal_entries' %}">Ver mis Journals</a>
-    <a href="{% url 'fundamental_data' %}">Fundamentales</a>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <img src="{% static 'images/atBlack.png' %}" alt="weblog" height="12rem" >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Journal
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'create_journal' %}">Create Journal</a></li>
+              <li><a class="dropdown-item" href="{% url 'journal_entries' %}">List of Journals</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fundamental_data' %}">Fundamentals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">AI training</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom border-dark">Features</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="featuresymbol">
+          <img src="https://img.icons8.com/?size=100&id=42763&format=png&color=000000" alt="Journal symbol" class="featurelogo">
+        </div>
+        <h2>Create a journal</h2>
+        <p>Our journal feature allows you to meticulously document your trading positions. Record essential details like entry and exit points, profit and loss, and key insights from each trade. This valuable tool helps you analyze your performance, identify patterns, and refine your trading strategies over time.</p>
+        <a href="{% url 'create_journal' %}" class="icon-link">
+          <img src="https://img.icons8.com/?size=100&id=742&format=png&color=000000" alt="linklogo">
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="featuresymbol">
+          <img src="https://img.icons8.com/?size=100&id=98027&format=png&color=000000" alt="Journal symbol" class="featurelogo">
+        </div>
+        <h2>Dashboard</h2>
+        <p>Our intuitive dashboard provides a comprehensive overview of your trading activity. Monitor your portfolio performance, track key metrics, and visualize your progress over time. With customizable charts and real-time updates, you can make informed decisions and stay ahead of the market. </p>
+        <a href="{% url 'dashboard' %}" class="icon-link">
+          <img src="https://img.icons8.com/?size=100&id=742&format=png&color=000000" alt="linklogo">
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="featuresymbol">
+          <img src="https://img.icons8.com/?size=100&id=532&format=png&color=000000" alt="news symbol" class="featurelogo">
+        </div>
+        <h2>Fundamental tools</h2>
+        <p>Our dedicated page provides you with essential fundamental data to make informed trading decisions. Access key financial metrics, news updates, and analyst insights for your chosen assets. Stay up-to-date with the latest market trends and make data-driven choices to optimize your trading strategy. </p>
+        <a href="{% url 'fundamental_data' %}" class="icon-link">
+          <img src="https://img.icons8.com/?size=100&id=742&format=png&color=000000" alt="linklogo">
+        </a>
+      </div>
+    </div>
   </div>
-  
-  <div class="row mt-3 border-bottom">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-  </div>
-  <div>
-    <h1 class="text-center mt-5">Economic Data Calendar</h1>
+
+  <div class="b-example-divider"></div>
+
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Next Features</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <img src="https://img.icons8.com/?size=100&id=61864&format=png&color=000000" alt="Journal symbol" class="featurelogo">
+        </div>
+        <div>
+          <h2>AI Prompt Assistant</h2>
+          <p>Harness the potential of Large Language Models (LLMs) to streamline your trading operations. Use intuitive prompts to generate trading ideas, analyze market trends, and execute complex strategies. Our LLM-powered tools provide intelligent assistance, empowering you to make informed decisions and optimize your trading outcomes.</p>
+          <button type="button" class="btn btn-secondary btn-lg" disabled>Soon...</button> 
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <img src="https://img.icons8.com/?size=100&id=6476&format=png&color=000000" alt="Journal symbol" class="featurelogo">
+        </div>
+        <div>
+          <h2>Advanced AI Training Model</h2>
+          <p>Elevate your trading experience with our advanced AI training model. By feeding the AI with your unique trading data, you can tailor its learning process to your specific strategies and preferences. Create a highly personalized AI assistant that understands your investment style and provides tailored insights to optimize your trading performance.</p>
+          <button type="button" class="btn btn-secondary btn-lg" disabled>Soon...</button>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <img src="https://img.icons8.com/?size=100&id=101164&format=png&color=000000" alt="Journal symbol" class="featurelogo">
+        </div>
+        <div>
+          <h2>Lots of AI trading features</h2>
+          <p>Soon our platform will offer a suite of powerful AI training tools designed to elevate your trading skills. Explore a range of advanced techniques, from supervised and unsupervised learning to reinforcement learning. Experiment with different model architectures, hyperparameter tuning, and data preprocessing to fine-tune your AI models and achieve exceptional results.</p>
+          <button type="button" class="btn btn-secondary btn-lg" disabled>Soon...</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

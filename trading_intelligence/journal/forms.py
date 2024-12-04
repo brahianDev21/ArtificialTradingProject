@@ -4,11 +4,24 @@ from .models import Journal
 from crispy_forms.helper import FormHelper
 
 class JournalForm(forms.ModelForm):
+    
+    open_datetime = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control',
+            'type': 'datetime-local'
+        })
+    )
+    close_datetime = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control',
+            'type': 'datetime-local'
+        })
+    )
 
     class Meta:
         model = Journal
         fields = ['is_profit', 'title', 'content', 'img_filename', 'pair', 'order_type', 'lots', 'open_datetime',
-                  'close_datetime', 'open_price', 'close_price', 'take_profit', 'stop_loss', 'commission']
+                  'close_datetime', 'open_price', 'close_price', 'take_profit', 'stop_loss', 'commission', 'operation_balance']
         widgets = {
             
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -18,13 +31,12 @@ class JournalForm(forms.ModelForm):
             'pair': forms.Select(attrs={'class': 'form-select'}),
             'order_type': forms.Select(attrs={'class': 'form-select'}),
             'lots': forms.NumberInput(attrs={'class': 'form-control'}),
-            'open_datetime': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
-            'close_datetime': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'open_price': forms.NumberInput(attrs={'class': 'form-control'}),
             'close_price': forms.NumberInput(attrs={'class': 'form-control'}),
             'take_profit': forms.NumberInput(attrs={'class': 'form-control'}),
             'stop_loss': forms.NumberInput(attrs={'class': 'form-control'}),
-            'commission': forms.NumberInput(attrs={'class': 'form-control'})
+            'commission': forms.NumberInput(attrs={'class': 'form-control'}),
+            'operation_balance': forms.NumberInput(attrs={'class': 'form-control'}),
 
         }
     
@@ -36,9 +48,9 @@ class JournalForm(forms.ModelForm):
 
 
     is_profit = forms.ChoiceField(choices=[
-        (None, 'None'), 
-        (True, 'True'), 
-        (False, 'False')
+        ('', '---'),  # Blank choice
+        ('True', 'Yes'), 
+        ('False', 'No')
     ], required=False)
     pair = forms.ChoiceField(choices=[
         ('eurusd', 'EUR/USD'),
@@ -49,13 +61,13 @@ class JournalForm(forms.ModelForm):
         ('buy', 'Buy'),
         ('sell', 'Sell')
     ])
-    open_datetime = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'])
-    close_datetime = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'])
+    #open_datetime = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'])
+    #close_datetime = forms.DateTimeField(input_formats=['%Y-%m-%dT%H:%M'])
 
     def clean_is_profit(self):
         value = self.cleaned_data.get('is_profit')
-        if value == 'true':
+        if value == 'True':
             return True
-        elif value == 'false':
+        elif value == 'False':
             return False
         return None

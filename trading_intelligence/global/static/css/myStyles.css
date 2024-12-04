@@ -1,0 +1,168 @@
+/*All*/
+
+*{
+    font-family: "Noto Serif";
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* **************************************Home******************************* */
+#hero {
+    height: 100vh; /* Ocupa toda la pantalla */
+    background-image: url('../images/atimg1.webp');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+#content {
+    background-color: #000; 
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+.text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: none;
+    
+}
+.text.animate {
+    animation: 
+        typing 2s,
+        cursor .4s step-end infinite alternate;
+}
+/*typing effect */
+@keyframes typing {
+    from {width: 0}
+    to { width: 100%;}
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.headerrow {
+    background-color: #000;
+    padding: 1rem;
+}
+ 
+.credential {
+    color: black;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 35%;
+    padding: 0.5rem;
+}
+
+.credential:hover {
+    color: #000;
+    background-color: #797D81;
+}
+
+.homefooter {
+    background-color: black;
+    color: white;
+    width: 100%;
+    min-height: 200px;
+    position: relative;
+    bottom: 0;
+    padding-left: 1rem;
+    padding-top: 1.5rem;
+    padding-right: 2rem;
+    margin-top: auto;
+}
+
+.symbols img{
+    height: 4rem;
+    margin: 10px;
+
+}
+
+.links img{
+    height: 2rem;
+    margin: 5px;
+}
+
+.text_labels {
+    text-align: center;
+}
+
+/* ******************journal detail**************** */
+.imagenJournal {
+    width: 800px;
+}
+
+
+/* *****************Login***************************  */
+
+.wrapper {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/atB2.webp');
+    background-size: cover;
+    background-position: center;
+    color: #000;
+}
+
+.effectWrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.effectWrapper h1 {
+    text-align: center;
+    color: black;
+}
+
+.effectWrapper .input-box {
+    width: 100%;
+    height: 50%;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+}
+
+.effectWrapper .submitbtn {
+    width: 100%;
+    height: 1 rem;
+    background: white;
+    color: #000;
+    border: none;
+    outline: none;
+    border-radius: 45px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.effectWrapper .backdiv {
+    text-align: center;
+    display: block;
+    color: black;
+}

@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('global.urls')),
     path('journal/', include('journal.urls')),
     path('fundamental/', include('fundamental_data.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

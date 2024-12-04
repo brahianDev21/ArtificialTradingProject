@@ -1,84 +1,93 @@
 {% extends "base.html" %}
 {% block title %}New journal{% endblock %}
-
+{% load static %}
+{% block head %} <link rel="stylesheet" href="{% static 'css/journal.css' %}">{% endblock %}
 {% block content %}
 <div class="container">
-    
+
     <form method="POST" action="{% url 'create_journal' %}" enctype="multipart/form-data">
         {% csrf_token %} 
         {% load crispy_forms_tags %}
         <div class="row mt-3">
+            <div class="col-sm-3">
+                <a class="btn btn-primary  back-btn" href="{% url 'index' %}" role="button">Back</a>
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="mb-3 col-sm-4 text_labels">
-                <label for="title">Titulo</label>
+                <label for="{{ form.title.id_for_label }}">Title</label>
                 {{ form.title|as_crispy_field }}  
             </div>
             <div class="mb-3 col-sm-4 text_labels">
-                <label for="image">Imagen del Trade</label>
+                <label for="{{ form.imag_filename.id_for_label }}">Trade's Image</label>
                 {{ form.img_filename|as_crispy_field }}  
             </div>
             <div class="mb-3 col-sm-4">
-                <label for="is_profit">¿Fue profit?</label>
+                <label for="{{ form.is_profit.id_for_label }}">¿Is Profit?</label>
                 {{ form.is_profit|as_crispy_field }}  
             </div>
         </div>
         <div class="mb-3">
-            <div class="form-floating">
-                <label for="content">Contenido</label>
+            <div>
+                <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
                 {{ form.content|as_crispy_field }}
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <label for="pair">Par de divisas</label>
+                <label for="{{ form.pair.id_for_label }}">Currency Pair</label>
                 {{ form.pair|as_crispy_field }}
             </div>
             <div class="col-sm-4">
-                <label for="order_type">Tipo de orden</label>
+                <label for="{{ form.order_type.id_for_label }}">Order Type</label>
                 {{ form.order_type|as_crispy_field }}
             </div>
             <div class="mb-3 col-sm-4 text_labels">
-                <label for="lots">Lotaje</label>
+                <label for="{{ form.lots.id_for_label }}">Lots</label>
                 {{ form.lots|as_crispy_field }}
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
-                <label for="open_datetime">Open datetime:</label>
+                <label for="{{ form.open_datetime.id_for_label }}">Open Datetime</label>
                 {{ form.open_datetime|as_crispy_field }}
             </div>
             <div class="col-sm-6">
-                <label for="close_datetime">Close datetime:</label>
+                <label for="{{ form.close_datetime.id_for_label }}">Close Datetime</label>
                 {{ form.close_datetime|as_crispy_field }}
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="open_price">Precio de apertura</label>
+            <div class="col-sm-4">
+                <label for="{{ form.open_price.id_for_label }}">Open Price</label>
                 {{ form.open_price|as_crispy_field }}
             </div>
-            <div class="col-sm-6">
-                <label for="close_price">Precio de cierre</label>
+            <div class="col-sm-4">
+                <label for="{{ form.close_price.id_for_label }}">Close Price</label>
                 {{ form.close_price|as_crispy_field }}
+            </div>
+            <div class="col-sm-4">
+                <label for="{{ form.operation_balance.id_for_label }}">Final Balance</label>
+                {{ form.operation_balance|as_crispy_field }}
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-4">
-                <label for="take_profit">Take profit</label>
+                <label for="{{ form.take_profit.id_for_label }}">Take profit</label>
                 {{ form.take_profit|as_crispy_field }}
             </div>
             <div class="col-sm-4">
-                <label for="stop_loss">Stop Loss</label>
+                <label for="{{ form.stop_loss.id_for_label }}">Stop Loss</label>
                 {{ form.stop_loss|as_crispy_field }}
             </div>
             <div class="col-sm-4">
-                <label for="commission">Comision</label>
+                <label for="{{ form.commission.id_for_label }}">Commission</label>
                 {{ form.commission|as_crispy_field }}
             </div>
         </div>
         <div class="container">
             <p class="d-flex justify-content-center">Para todos los valores que requieran decimales usar "."</p>
             <p class="d-flex justify-content-center">Además, el datetime debe ser seleccionado en hora de New York. UTC -4</p>
-            <p class="d-flex justify-content-center">Ejemplo de ingleso datos de Open Datetime / Close Datetime:2023-07-05T14:30</p>
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary d-flex justify-content-center mb-3">Subir</button>
             </div>

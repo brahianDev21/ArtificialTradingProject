@@ -9,23 +9,13 @@
 
 <div class="container-fluid">
 
-  <div class="row mt-5">
+  <div class="d-flex">
 
-    <div class="col-sm-6">
-      <h2>Grafica diaria EURUSD</h2>
-      <!-- Contenedor para el gráfico -->
-      <div class="row mb-4">
-        <div class="col-md-6">
-          <div id="chart"></div>
-        </div>
-      </div>
-    </div>
-    <!--Tabla de eventos economicos-->
-    <div class="col-sm-6 tableEvents">
-
-      <h2 class="fs-15 text-center">Eventos economicos: {{ min_date }} - {{ max_date }}</h2>
+    <div class="container tableEvents me-4">
+  
+      <h2 class="fs-6 text-center">Eventos economicos: {{ min_date }} - {{ max_date }}</h2>
     
-      <table class="table table-hover">
+      <table class="table table-hover fs-6">
         <thead>
           <tr>
             <th scope="col">Date</th>
@@ -51,32 +41,46 @@
           {% endfor %}
         </tbody>
       </table>
-
+  
     </div>
-  </div>
+    <div>
 
-  <!--Noticias del mercado-->
-  <div class="row mt-4">
-    <div class="col-12">
-      <h2>Market News</h2>
-      <div class="row">
-        {% for news in news_data %}
-        <div class="col-md-6 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ news.title }}</h5>
-              <p class="card-text">{{ news.summary }}</p>
-              <p class="text-muted">
-                Source: {{ news.source }} | 
-                Time: {{ news.time_published }}
-              </p>
-            </div>
+      <div>
+        <h2>Grafica diaria EURUSD</h2>
+        <!-- Contenedor para el gráfico -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div id="chart"></div>
           </div>
         </div>
-        {% endfor %}
+      </div>
+  
+      <div class="mt-4">
+        <div>
+          <h2>Market News</h2>
+          <div class="row">
+            {% for news in news_data %}
+            <div class="col-md-6 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ news.title }}</h5>
+                  <p class="card-text">{{ news.summary }}</p>
+                  <p class="text-muted">
+                    Source: {{ news.source }} | 
+                    Time: {{ news.time_published }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
+
 
 </div>
 

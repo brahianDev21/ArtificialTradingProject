@@ -4,7 +4,10 @@ from datetime import datetime
 import pytz
 import json
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
+#@cache_page(3600)
 @login_required
 def fundamentalData(request):
 
@@ -91,7 +94,7 @@ def fundamentalData(request):
             print(f"Found {len(news_json['feed'])} news items")
             for item in news_json['feed'][:4]:
                 news_data.append({
-                    'title': item.get('title', ''),
+                    'title': item.get('title', ''), 
                     'summary': item.get('summary', ''),
                     'source': item.get('source', ''),
                     'url': item.get('url', ''),

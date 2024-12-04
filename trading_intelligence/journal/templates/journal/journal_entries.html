@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block title %}New journal{% endblock %}
+{% load static %}
+{% block head %} <link rel="stylesheet" href="{% static 'css/journal.css' %}">{% endblock %}
 {% block content %} 
 
 <div class="container mt-4">
@@ -13,24 +15,32 @@
     <ul class="list-group">
       {% for journal in journals %}
       <li class="list-group-item">
-        <a href="{% url 'journal_detail' journal_id=journal.id %}">{{ journal.title }}</a>
-        <div>
-          <!-- Botón para editar -->
-          <a href="{% url 'edit_journal' journal_id=journal.id %}" class="btn btn-primary btn-sm">Editar</a>
-  
-          <!-- Botón para eliminar -->
-          <form action="{% url 'delete_journal' journal_id=journal.id %}" method="POST" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta entrada?');">Eliminar</button>
-          </form>
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url 'journal_detail' journal_id=journal.id %}">{{ journal.title }}</a>
+          <div class="buttons-group">
+            <!-- Edit button -->
+            <a href="{% url 'edit_journal' journal_id=journal.id %}" class="btn btn-primary btn-sm me-2">
+              <img src="https://img.icons8.com/?size=100&id=49&format=png&color=000000" alt="Edit btn" class="edit-delete-btn">
+            </a>
+    
+            <!-- Delete button -->
+            <form action="{% url 'delete_journal' journal_id=journal.id %}" method="POST" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta entrada?');">
+                <img src="https://img.icons8.com/?size=100&id=68138&format=png&color=000000" alt="Delete btn" class="edit-delete-btn">
+              </button>
+            </form>
+          </div> 
         </div>
       </li>
       {% endfor %}
-
     </ul>
+    <div class="alert alert-info text-center" role="alert">
+      <a href="{% url 'create_journal' %}">¡Crea una nueva entrada!</a>
+    </div>
   {% else %}
     <div class="alert alert-info text-center" role="alert">
-    No tienes entradas aun. ¡Crea una nueva entrada!
+    No tienes entradas aun. <a href="{% url 'create_journal' %}">¡Crea una nueva entrada!</a>
     </div>
   {% endif%}
 

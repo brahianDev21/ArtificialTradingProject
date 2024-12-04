@@ -1,5 +1,9 @@
 {% extends "base.html"%}
 {% block title%}Home{% endblock%}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/myStyles.css' %}">
+{% endblock %}
 {% block content %}
     <header>
         <div class="header d-fluid">
@@ -14,36 +18,39 @@
     <section id="hero" class="d-flex align-items-center justify-content-center">
 
     </section>
-    <section id="content" class="container-fluid py-5 text-center">
-        <div class="container">
-            <p class="text d-inline-block">
-                La union de la Inteligencia Artificial
-                con el Trading. <br><br>
-                Gestiona, monitoriea y mejora tus estrategias<br> de Trading.
-            </p>
+
+    <footer class="homefooter">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="d-flex symbols">
+                    <div>
+                        <img src="{% static 'images/atWhite.png' %}" alt="weblog" >
+                    </div>
+                    <div>Artificial Trading</div>
+                </div>
+                <div class="d-flex align-items-center links">
+                    <a href="https://github.com/brahianDev21/ArtificialTradingProject">
+                        <img src="https://img.icons8.com/?size=100&id=efFfwotdkiU5&format=png&color=000000" alt="Github logo">
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=3004064970&text&type=phone_number&app_absent=0">
+                        <img src="https://img.icons8.com/?size=100&id=A1JUR9NRH7sC&format=png&color=000000" alt="wsImage">
+                    </a>
+                    <a href="https://www.linkedin.com/in/brahian-toro-867890220/">
+                        <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="linkedinImage">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-sm-8">
+                <div>
+                    <p>Artificial Trading is a company that encompasses everything related to trading, with a focus on utilizing Artificial Intelligence to develop training models, enhance strategies, and predict price patterns. We are currently in the development phase.</p>
+                    <p>By: Brahian Toro Valencia</p>
+                </div>
+
+            </div>
+
         </div>
-    </section>
-
-    <footer>
-
-        <h2>Created by: Brahian Toro Valencia</h2>
 
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const textElement = document.querySelector(".text");
-    
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        textElement.classList.add("animate"); // Activa la animación
-                        observer.unobserve(textElement); // Detiene la observación para que no se repita
-                    }
-                });
-            });
-    
-            observer.observe(textElement); // Inicia la observación
-        });
-    </script>
-
 {% endblock%}

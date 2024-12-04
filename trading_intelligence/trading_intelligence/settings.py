@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'journal',
     'crispy_forms',
     'crispy_bootstrap5',
-    'fundamental_data'
+    'fundamental_data',
+    'dashboard',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -146,4 +148,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'trading_intelligence', 'media')
 #MEDIA_URL = '/media/'
 
-#Caching para apis (pendiente)
+#Caching para apis
+
+CACHES = {
+    'default': {
+        'BACKEND': "django.core.cache.backends.db.DatabaseCache",
+        'LOCATION': 'my_cache_table',
+    }
+}
