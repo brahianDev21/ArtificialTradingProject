@@ -6,11 +6,6 @@ set -o errexit
 pip install -r requirements.txt
 
 
-
-# Reset migrations and database
-echo "Resetting database..."
-python manage.py migrate --fake zero
-
 # Create database tables in strict order
 echo "Creating database tables..."
 python manage.py migrate contenttypes --noinput
