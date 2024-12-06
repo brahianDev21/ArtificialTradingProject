@@ -1,0 +1,18 @@
+.form-control {
+    border: 1px solid #888 !important; /* Darker gray border */
+}
+
+.form-select {
+    border: 1px solid #888 !important; /* Darker gray border */
+}
+
+/* When the fields are focused */
+.form-control:focus, .form-select:focus {
+    border-color: #666 !important;
+    box-shadow: 0 0 0 0.25rem rgba(100, 100, 100, 0.25) !important;
+}
+
+/* journal entries */
+.edit-delete-btn {
+    width: 1.5rem;
+}

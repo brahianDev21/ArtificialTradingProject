@@ -140,6 +140,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "global/static",  # Ruta a tus archivos estáticos
 ]
 
+WHITENOISE_MIMETYPES = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
