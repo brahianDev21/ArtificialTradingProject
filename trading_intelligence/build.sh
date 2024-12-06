@@ -7,27 +7,25 @@ pip install -r requirements.txt
 
 
 
-# Create database tables in order
-echo "Making migrations..."
-python manage.py makemigrations
+# Reset migrations and database
+echo "Resetting database..."
+python manage.py migrate --fake zero
 
-echo "Migrating auth..."
-python manage.py migrate auth
-
-echo "Migrating admin..."
-python manage.py migrate admin
-
-echo "Migrating contenttypes..."
-python manage.py migrate contenttypes
-
-echo "Migrating sessions..."
-python manage.py migrate sessions
+# Create database tables in strict order
+echo "Creating database tables..."
+python manage.py migrate contenttypes --noinput
+python manage.py migrate auth --noinput
+python manage.py migrate admin --noinput
+python manage.py migrate sessions --noinput
 
 echo "Migrating remaining apps..."
-python manage.py migrate
+python manage.py migrate --noinput
 
 # Convert static asset files
 python manage.py collectstatic --no-input
 
-# Create superuser if needed (can be commented out after first run)
+# Create superuser
+echo "Creating superuser..."
 echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword') if not User.objects.filter(username='admin').exists() else None" | python manage.py shell
+
+echo "Build completed."
